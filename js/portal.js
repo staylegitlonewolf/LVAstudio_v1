@@ -2,7 +2,7 @@
 // TEST: This is a live site test fdfd
 // --- Portal Quotes ---
 export const quotes = [
-  "Health Insurance — Trust in Every Policy.",
+  "Health test Insurance — Trust in Every Policy.",
   "Solar Panel Systems — Powering a Greener Future.",
   "General Contracting — Built to Last.",
   "3D Modeling — Ideas in High Definition.",
