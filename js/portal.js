@@ -1,4 +1,4 @@
-// TEST: This is a test change to verify GitHub workflow
+// this is a test
 // --- Portal Quotes ---
 export const quotes = [
   "Health Insurance — Trust in Every Policy.",
@@ -27,7 +27,7 @@ export async function initLoading() {
   try {
     await fetch('https://jsonplaceholder.typicode.com/posts?_limit=1');
   } catch (e) {}
-  document.getElementById('progress').textContent = '✅ Ready1 to Launch TEST';
+  document.getElementById('progress').textContent = '✅ Ready to Launch ';
   document.getElementById('spinner').style.display = 'none';
   document.getElementById('enterBtn').classList.add('show');
 }
