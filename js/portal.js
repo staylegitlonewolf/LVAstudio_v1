@@ -22,11 +22,11 @@ export function startQuotes() {
   }, 3500);
 }
 export async function initLoading() {
-  document.getElementById('progress').textContent = 'Fetching resources...';
+  document.getElementById('progress').textContent = 'This is a test';
   try {
     await fetch('https://jsonplaceholder.typicode.com/posts?_limit=1');
   } catch (e) {}
-  document.getElementById('progress').textContent = '✅ Ready to Launch2';
+  document.getElementById('progress').textContent = '✅ Ready1 to Launch TEST';
   document.getElementById('spinner').style.display = 'none';
   document.getElementById('enterBtn').classList.add('show');
 }
