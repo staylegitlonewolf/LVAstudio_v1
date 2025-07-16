@@ -1,0 +1,21 @@
+body {
+  background: transparent;
+  color: var(--text-color);
+}
+.top-menu {
+  background: rgba(0, 0, 0, 0.9);
+  color: #ffffff;
+}
+.card-title {
+  color: var(--title-color) !important;
+}
+.flip-front,
+.flip-back,
+.flip-front p,
+.flip-back p,
+.card-desc {
+  color: var(--text-color) !important;
+}
+.footer-cta {
+  color: var(--text-color);
+} 

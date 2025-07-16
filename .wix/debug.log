@@ -1,0 +1,50 @@
+----- CLI crash report at 2025-07-15T18:49:31.554Z
+Error Trace
+FailedToIdentifyProgramFlow: FailedToIdentifyProgramFlow
+    at _Command.<anonymous> (C:\Users\Lonewolf\AppData\Roaming\npm\node_modules\@wix\cli\src\program.ts:73:15)
+    at _Command.emit (node:events:524:28)
+    at _Command._parseCommand (C:\Users\Lonewolf\AppData\Roaming\npm\node_modules\node_modules\commander\lib\command.js:1607:14)
+    at _Command.parseAsync (C:\Users\Lonewolf\AppData\Roaming\npm\node_modules\node_modules\commander\lib\command.js:1104:16)
+    at <anonymous> (C:\Users\Lonewolf\AppData\Roaming\npm\node_modules\@wix\cli\src\index.tsx:80:39)
+Error Info
+{}
+----- CLI crash report at 2025-07-15T20:46:12.434Z
+Error Trace
+FailedToIdentifyProgramFlow: FailedToIdentifyProgramFlow
+    at _Command.<anonymous> (C:\Users\Lonewolf\AppData\Roaming\npm\node_modules\@wix\cli\src\program.ts:73:15)
+    at _Command.emit (node:events:524:28)
+    at _Command._parseCommand (C:\Users\Lonewolf\AppData\Roaming\npm\node_modules\node_modules\commander\lib\command.js:1607:14)
+    at _Command.parseAsync (C:\Users\Lonewolf\AppData\Roaming\npm\node_modules\node_modules\commander\lib\command.js:1104:16)
+    at <anonymous> (C:\Users\Lonewolf\AppData\Roaming\npm\node_modules\@wix\cli\src\index.tsx:80:39)
+Error Info
+{}
+----- CLI crash report at 2025-07-15T21:03:30.660Z
+Error Trace
+FailedToIdentifyProgramFlow: FailedToIdentifyProgramFlow
+    at _Command.<anonymous> (C:\Users\Lonewolf\AppData\Roaming\npm\node_modules\@wix\cli\src\program.ts:73:15)
+    at _Command.emit (node:events:524:28)
+    at _Command._parseCommand (C:\Users\Lonewolf\AppData\Roaming\npm\node_modules\node_modules\commander\lib\command.js:1607:14)
+    at _Command.parseAsync (C:\Users\Lonewolf\AppData\Roaming\npm\node_modules\node_modules\commander\lib\command.js:1104:16)
+    at <anonymous> (C:\Users\Lonewolf\AppData\Roaming\npm\node_modules\@wix\cli\src\index.tsx:80:39)
+Error Info
+{}
+----- CLI crash report at 2025-07-15T21:17:40.308Z
+Error Trace
+FailedToIdentifyProgramFlow: FailedToIdentifyProgramFlow
+    at _Command.<anonymous> (C:\Users\Lonewolf\AppData\Roaming\npm\node_modules\@wix\cli\src\program.ts:73:15)
+    at _Command.emit (node:events:524:28)
+    at _Command._parseCommand (C:\Users\Lonewolf\AppData\Roaming\npm\node_modules\node_modules\commander\lib\command.js:1607:14)
+    at _Command.parseAsync (C:\Users\Lonewolf\AppData\Roaming\npm\node_modules\node_modules\commander\lib\command.js:1104:16)
+    at <anonymous> (C:\Users\Lonewolf\AppData\Roaming\npm\node_modules\@wix\cli\src\index.tsx:80:39)
+Error Info
+{}
+----- CLI crash report at 2025-07-16T03:38:19.621Z
+Error Trace
+FailedToIdentifyProgramFlow: FailedToIdentifyProgramFlow
+    at _Command.<anonymous> (C:\Users\Lonewolf\AppData\Roaming\npm\node_modules\@wix\cli\src\program.ts:73:15)
+    at _Command.emit (node:events:524:28)
+    at _Command._parseCommand (C:\Users\Lonewolf\AppData\Roaming\npm\node_modules\node_modules\commander\lib\command.js:1607:14)
+    at _Command.parseAsync (C:\Users\Lonewolf\AppData\Roaming\npm\node_modules\node_modules\commander\lib\command.js:1104:16)
+    at <anonymous> (C:\Users\Lonewolf\AppData\Roaming\npm\node_modules\@wix\cli\src\index.tsx:80:39)
+Error Info
+{}
