@@ -31,8 +31,7 @@ body.epic-mode .epic-bg-video {
   z-index: -1 !important;
   pointer-events: none !important;
   opacity: 0.7 !important;
-  /* Debug border, remove when confirmed */
-  border: 2px solid red;
+  /* Debug border removed */
 }
 
 .epic-bg-video {
