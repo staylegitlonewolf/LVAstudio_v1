@@ -23,6 +23,10 @@
   <!-- Fixed Top Menu -->
   <div class="top-menu">
     <div class="menu-group">
+      <button id="side-menu-toggle" class="hamburger-btn" aria-label="Open side menu">
+        <i class="fas fa-bars"></i>
+      </button>
+      <span class="brand-text"> Living Victorious Always™ </span>
       <img
         src="https://static.wixstatic.com/media/b2f74b_35458543ca6540f4bad3ad4cb452ffac~mv2.png/v1/fill/w_209,h_209,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/lva%20baby%20blue%203d%20no%20backgroud.png"
         alt="LVA Logo"
@@ -30,10 +34,27 @@
         id="logo-btn"
         style="cursor:pointer;"
       />
-      <span class="brand-text"> Living Victorious Always™ </span>
-      <button class="toggle-mode-btn light-btn" onclick="toggleFontMode(this)">Light</button>
+      <!-- Theme toggle button moved to side menu -->
     </div>
   </div>
+  <!-- Side Menu and Overlay -->
+  <div id="side-menu-overlay" class="side-menu-overlay" style="display:none;"></div>
+  <nav id="side-menu" class="side-menu" style="display:none;">
+    <button id="close-side-menu" class="close-side-menu" aria-label="Close side menu">&times;</button>
+    <div class="side-menu-content">
+      <button class="toggle-mode-btn light-btn" onclick="toggleFontMode(this)" aria-label="Toggle theme">
+        <svg class="lightbulb-icon" width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <g>
+            <ellipse cx="16" cy="13" rx="8" ry="10" fill="#fffbe6" class="bulb-glow"/>
+            <path d="M16 3C10.477 3 6 7.477 6 13c0 3.866 2.5 6.5 4 8v2a2 2 0 002 2h4a2 2 0 002-2v-2c1.5-1.5 4-4.134 4-8 0-5.523-4.477-10-10-10z" fill="#ffe066" stroke="#bfa600" stroke-width="2"/>
+            <rect x="13" y="25" width="6" height="3" rx="1.5" fill="#bfa600"/>
+            <rect x="14" y="28" width="4" height="2" rx="1" fill="#bfa600"/>
+          </g>
+        </svg>
+      </button>
+      <button id="fullscreen-toggle" class="fullscreen-btn">Toggle Fullscreen</button>
+    </div>
+  </nav>
   <!-- Main Content Area -->
   <div id="main-content">
     <!-- Portal Layout (default view) -->

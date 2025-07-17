@@ -265,33 +265,55 @@ function restorePortalContent() {
   }
 }
 // --- Theme Toggle Logic ---
-window.addEventListener('DOMContentLoaded', () => {
-  const button = document.querySelector('.toggle-mode-btn');
-  const isClean = document.body.classList.contains('clean-mode');
-  button.textContent = isClean ? 'Epic' : 'Light';
-  button.classList.remove('light-btn', 'epic-btn');
-  button.classList.add(isClean ? 'light-btn' : 'epic-btn');
-  // Logo click always returns to portal menu
-  const logoBtn = document.getElementById('logo-btn');
-  logoBtn.addEventListener('click', () => {
-    // Hide all service roots
-    ['health-root','solar-root','contracting-root','model-root','wix-root','nil-root'].forEach(id => {
-      const el = document.getElementById(id);
-      if (el) el.style.display = 'none';
-    });
-    enterPortal();
-  });
-  // Logo hover effect
-  logoBtn.style.cursor = 'pointer';
-  logoBtn.addEventListener('mouseenter', () => {
-    logoBtn.style.transform = 'scale(1.07)';
-    logoBtn.style.filter = 'brightness(1.2)';
-    logoBtn.style.transition = 'transform 0.15s, filter 0.15s';
-  });
-  logoBtn.addEventListener('mouseleave', () => {
-    logoBtn.style.transform = '';
-    logoBtn.style.filter = '';
-  });
+// (Removed top menu toggle logic, handled by button in side menu)
+// --- Side Menu and Fullscreen Logic ---
+document.addEventListener('DOMContentLoaded', () => {
+  const sideMenu = document.getElementById('side-menu');
+  const overlay = document.getElementById('side-menu-overlay');
+  const openBtn = document.getElementById('side-menu-toggle');
+  const closeBtn = document.getElementById('close-side-menu');
+  const fullscreenBtn = document.getElementById('fullscreen-toggle');
+  const themeBtn = document.querySelector('.toggle-mode-btn');
+
+  function openMenu() {
+    sideMenu.style.display = 'flex';
+    overlay.style.display = 'block';
+    setTimeout(() => sideMenu.classList.add('open'), 10);
+  }
+  function closeMenu() {
+    sideMenu.classList.remove('open');
+    overlay.style.display = 'none';
+    setTimeout(() => sideMenu.style.display = 'none', 300);
+  }
+  if (openBtn) openBtn.addEventListener('click', openMenu);
+  if (closeBtn) closeBtn.addEventListener('click', closeMenu);
+  if (overlay) overlay.addEventListener('click', closeMenu);
+
+  if (fullscreenBtn) {
+    // Detect iPhone/iOS
+    const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
+    if (isIOS) {
+      fullscreenBtn.disabled = true;
+      fullscreenBtn.textContent = 'Fullscreen not supported on iPhone';
+    } else {
+      fullscreenBtn.addEventListener('click', () => {
+        if (!document.fullscreenElement) {
+          document.documentElement.requestFullscreen();
+        } else {
+          document.exitFullscreen();
+        }
+        closeMenu(); // Close sidebar after click
+      });
+    }
+  }
+  // Ensure theme toggle works in side menu
+  if (themeBtn) {
+    // Set correct class on load
+    const isClean = document.body.classList.contains('clean-mode');
+    themeBtn.classList.remove('light-btn', 'epic-btn');
+    themeBtn.classList.add(isClean ? 'light-btn' : 'epic-btn');
+    themeBtn.addEventListener('click', closeMenu);
+  }
 });
 // --- Init Loading Spinner ---
 initLoading();
