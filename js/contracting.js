@@ -33,4 +33,6 @@ function showContractingPage() {
       <button class="contracting-cta-btn" style="background: #757575; color: #fff; font-size: 1.1rem; padding: 0.9rem 2.2rem; border: none; border-radius: 2rem; box-shadow: 0 2px 12px rgba(117,117,117,0.13); cursor: pointer;" onclick="window.open('mailto:contact@lva.studio?subject=Contracting%20Inquiry')">Request a Quote</button>
     </div>
   `;
+  // Scroll to top when this page is shown
+  window.scrollTo({ top: 0, behavior: 'smooth' });
 } 

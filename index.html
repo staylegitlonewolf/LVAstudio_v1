@@ -33,6 +33,7 @@
         class="menu-icon"
         id="logo-btn"
         style="cursor:pointer;"
+        onclick="enterPortal()"
       />
       <!-- Theme toggle button moved to side menu -->
     </div>
@@ -52,7 +53,7 @@
           </g>
         </svg>
       </button>
-      <button id="fullscreen-toggle" class="fullscreen-btn">Toggle Fullscreen</button>
+      <button id="fullscreen-toggle" class="fullscreen-btn">Fullscreen</button>
     </div>
   </nav>
   <!-- Main Content Area -->
@@ -97,7 +98,7 @@
     // Set button state
     const button = document.querySelector('.toggle-mode-btn');
     if (button) {
-      button.textContent = 'Light';
+      button.textContent = 'THEME';
       button.classList.remove('light-btn', 'epic-btn');
       button.classList.add('epic-btn');
     }

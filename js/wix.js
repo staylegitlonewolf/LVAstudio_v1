@@ -143,6 +143,8 @@ function showWixPage() {
       <p>$84.00/year (1 user)</p>
     </div>
   `;
+  // Scroll to top when this page is shown
+  window.scrollTo({ top: 0, behavior: 'smooth' });
   // FAQ expand/collapse
   wixRoot.querySelectorAll('.faq-item h3').forEach((h3) => {
     h3.addEventListener('click', () => {

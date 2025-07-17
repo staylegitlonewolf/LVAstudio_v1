@@ -54,7 +54,22 @@ function enterPortal() {
       Ready to grow with LVA.studio™? <a href="#">Apply Now</a> or <a href="mailto:contact@lva.studio">Contact Us</a>
     </div>
   `;
+  // Hide all service-specific sections
   document.getElementById('layout').style.display = 'none';
+  document.getElementById('portalContent').style.display = 'block';
+  const serviceSections = [
+    'health-root',
+    'solar-root',
+    'contracting-root',
+    'model-root',
+    'wix-root',
+    'nil-root'
+  ];
+  serviceSections.forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.style.display = 'none';
+  });
+  // Show portal content
   const portalContent = document.getElementById('portalContent');
   portalContent.style.display = 'block';
   portalContent.innerHTML = content;
@@ -317,3 +332,10 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 // --- Init Loading Spinner ---
 initLoading();
+
+// Expose key functions to the window object for global access
+window.enterPortal = enterPortal;
+window.generateCard = generateCard;
+window.attachCardEvents = attachCardEvents;
+window.loadShopContent = loadShopContent;
+window.restorePortalContent = restorePortalContent;

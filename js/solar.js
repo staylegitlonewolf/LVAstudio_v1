@@ -1,8 +1,22 @@
 // Solar Panels Service Page Script
 
 function showSolarPage() {
-  document.getElementById('layout').style.display = 'none';
-  document.getElementById('portalContent').style.display = 'none';
+  // Hide all service-specific sections
+  const serviceSections = [
+    'health-root',
+    'solar-root',
+    'contracting-root',
+    'model-root',
+    'wix-root',
+    'nil-root',
+    'portalContent',
+    'layout'
+  ];
+  serviceSections.forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.style.display = 'none';
+  });
+  // Show solar-root only
   let solarRoot = document.getElementById('solar-root');
   if (!solarRoot) {
     solarRoot = document.createElement('div');
@@ -33,4 +47,6 @@ function showSolarPage() {
       <button class="solar-cta-btn" style="background: #ffb300; color: #fff; font-size: 1.1rem; padding: 0.9rem 2.2rem; border: none; border-radius: 2rem; box-shadow: 0 2px 12px rgba(255,193,7,0.13); cursor: pointer;" onclick="window.open('mailto:contact@lva.studio?subject=Solar%20Panels%20Inquiry')">Get a Solar Quote</button>
     </div>
   `;
+  // Scroll to top when this page is shown
+  window.scrollTo({ top: 0, behavior: 'smooth' });
 } 

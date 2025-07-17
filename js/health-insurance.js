@@ -31,4 +31,6 @@ function showHealthInsurancePage() {
   document.getElementById('health-cta-btn').addEventListener('click', function () {
     window.open('https://staylegit.wixstudio.com/lvadavidhealthinsur/', '_blank');
   });
+  // Scroll to top when this page is shown
+  window.scrollTo({ top: 0, behavior: 'smooth' });
 } 

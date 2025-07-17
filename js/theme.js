@@ -19,8 +19,8 @@ export function setupThemeAndLogo(restorePortalContent, attachCardEvents) {
     button.classList.remove('light-btn', 'epic-btn');
     button.classList.add(isClean ? 'light-btn' : 'epic-btn');
     document.getElementById('logo-btn').addEventListener('click', () => {
-      if (document.getElementById('portalContent').innerHTML.includes('Experience the Future of Web Builds')) {
-        restorePortalContent(attachCardEvents);
+      if (typeof window.enterPortal === 'function') {
+        window.enterPortal();
       }
     });
   });

@@ -36,4 +36,15 @@ body.epic-mode .epic-bg-video {
 
 .epic-bg-video {
   display: none;
+}
+
+body.epic-mode .nil-card p,
+body.epic-mode .solar-card p,
+body.epic-mode .health-card p,
+body.epic-mode .contracting-card p {
+  color: #111 !important;
+}
+
+body.epic-mode .model-card p {
+  color: #111 !important;
 } 
