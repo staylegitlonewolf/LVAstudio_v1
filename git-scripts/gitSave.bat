@@ -1,6 +1,6 @@
 @echo off
-:: Save (Commit & Push) Changes to GitHub
+echo Saving ALL files and folders in the project...
+set /p msg="Enter commit message: "
 git add .
-git commit -m "Auto update"
-git push origin main
+git commit -m "%msg%"
 pause 

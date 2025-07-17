@@ -15,6 +15,10 @@
   <link rel="stylesheet" href="css/health-insurance.css">
 </head>
 <body>
+  <video id="epic-bg-video" class="epic-bg-video" autoplay loop muted playsinline style="display:none">
+    <source src="media/background.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
   <!-- Removed DEV SITE pin for production -->
   <!-- Fixed Top Menu -->
   <div class="top-menu">
@@ -26,7 +30,7 @@
         id="logo-btn"
         style="cursor:pointer;"
       />
-      <span class="brand-text">THIS IS A TEST 23 - Living Victorious Always™ </span>
+      <span class="brand-text"> Living Victorious Always™ </span>
       <button class="toggle-mode-btn light-btn" onclick="toggleFontMode(this)">Light</button>
     </div>
   </div>
@@ -61,5 +65,21 @@
   <script src="js/3d-model.js"></script>
   <script src="js/wix.js"></script>
   <script src="js/nilpartners.js"></script>
+  <script type="module">
+    import { toggleFontMode } from './js/theme.js';
+    window.toggleFontMode = toggleFontMode;
+    // On load, ensure epic mode is set
+    document.body.classList.remove('clean-mode');
+    document.body.classList.add('epic-mode');
+    const bgVideo = document.getElementById('epic-bg-video');
+    if (bgVideo) bgVideo.style.display = 'block';
+    // Set button state
+    const button = document.querySelector('.toggle-mode-btn');
+    if (button) {
+      button.textContent = 'Light';
+      button.classList.remove('light-btn', 'epic-btn');
+      button.classList.add('epic-btn');
+    }
+  </script>
 </body>
 </html>

@@ -18,4 +18,21 @@ body {
 }
 .footer-cta {
   color: var(--text-color);
+}
+
+body.epic-mode .epic-bg-video {
+  display: block !important;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0.7;
+}
+
+.epic-bg-video {
+  display: none;
 } 

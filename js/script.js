@@ -265,12 +265,6 @@ function restorePortalContent() {
   }
 }
 // --- Theme Toggle Logic ---
-function toggleFontMode(button) {
-  const isClean = document.body.classList.toggle('clean-mode');
-  button.textContent = isClean ? 'Epic' : 'Light';
-  button.classList.remove('light-btn', 'epic-btn');
-  button.classList.add(isClean ? 'light-btn' : 'epic-btn');
-}
 window.addEventListener('DOMContentLoaded', () => {
   const button = document.querySelector('.toggle-mode-btn');
   const isClean = document.body.classList.contains('clean-mode');
