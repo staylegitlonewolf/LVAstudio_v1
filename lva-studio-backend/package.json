@@ -5,6 +5,7 @@
   "description": "A Strapi application",
   "scripts": {
     "preinstall": "npm uninstall @swc/core @swc/cli @swc/helpers || true",
+    "postinstall": "npm uninstall @swc/core @swc/cli @swc/helpers || true",
     "build": "STRAPI_DISABLE_SWC=true NODE_OPTIONS='--max-old-space-size=4096' strapi build",
     "build:render": "STRAPI_DISABLE_SWC=true NODE_OPTIONS='--max-old-space-size=4096' strapi build",
     "build:production": "STRAPI_DISABLE_SWC=true NODE_OPTIONS='--max-old-space-size=4096' strapi build",
@@ -36,7 +37,7 @@
     "typescript": "^5"
   },
   "engines": {
-    "node": "18.x",
+    "node": "18.19.0",
     "npm": ">=8.0.0"
   },
   "strapi": {

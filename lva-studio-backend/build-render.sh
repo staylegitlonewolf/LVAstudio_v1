@@ -4,6 +4,8 @@
 set -e
 
 echo "=== LVA Studio Backend Build Script for Render ==="
+echo "Node.js version: $(node --version)"
+echo "NPM version: $(npm --version)"
 
 # Set critical environment variables
 export NODE_ENV=production
@@ -27,13 +29,25 @@ echo "4. Setting up environment for build..."
 export STRAPI_DISABLE_SWC=true
 export NODE_OPTIONS="--max-old-space-size=4096"
 
-echo "5. Building Strapi application..."
+echo "5. Verifying Strapi installation..."
+npx strapi --version
+
+echo "6. Building Strapi application..."
 npm run build:render
 
-echo "6. Verifying build output..."
+echo "7. Verifying build output..."
 if [ -d "build" ]; then
     echo "✅ Build directory created successfully"
+    echo "Build contents:"
     ls -la build/
+    
+    # Check for admin panel
+    if [ -d "build/admin" ]; then
+        echo "✅ Admin panel built successfully"
+    else
+        echo "❌ Admin panel not found"
+        exit 1
+    fi
 else
     echo "❌ Build directory not found"
     exit 1

@@ -42,6 +42,10 @@ services:
         value: true
       - key: GENERATE_SOURCEMAP
         value: false
+      - key: NPM_CONFIG_PRODUCTION
+        value: true
+      - key: NPM_CONFIG_LOGLEVEL
+        value: error
 
 databases:
   - name: lva-studio-db
