@@ -1,0 +1,6 @@
+services:
+  - type: web
+    name: lva-studio-backend
+    env: node
+    buildCommand: npm run build
+    startCommand: npm run start

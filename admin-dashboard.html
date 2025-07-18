@@ -189,7 +189,7 @@
                     }
 
                     console.log('Loading members...');
-                    const response = await fetch('http://localhost:1337/api/members?populate=user', {
+                    const response = await fetch('https://lvastudio-production.up.railway.app/api/members?populate=user', {
                         headers: {
                             'Authorization': `Bearer ${token}`
                         }
@@ -264,7 +264,7 @@
                 if (newBio !== null) {
                     try {
                         const token = localStorage.getItem('auth_token');
-                        const response = await fetch(`http://localhost:1337/api/members/${memberId}`, {
+                        const response = await fetch(`https://lvastudio-production.up.railway.app/api/members/${memberId}`, {
                             method: 'PUT',
                             headers: {
                                 'Content-Type': 'application/json',
@@ -293,7 +293,7 @@
                 if (confirm('Are you sure you want to delete this member?')) {
                     try {
                         const token = localStorage.getItem('auth_token');
-                        const response = await fetch(`http://localhost:1337/api/members/${memberId}`, {
+                        const response = await fetch(`https://lvastudio-production.up.railway.app/api/members/${memberId}`, {
                             method: 'DELETE',
                             headers: {
                                 'Authorization': `Bearer ${token}`

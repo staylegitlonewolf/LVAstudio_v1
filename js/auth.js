@@ -1,5 +1,5 @@
 // Authentication Configuration
-const STRAPI_URL = 'http://localhost:1337'; // Change this to your Strapi URL
+const STRAPI_URL = 'https://lvastudio-production.up.railway.app'; // Change this to your Strapi URL
 
 // Auth State Management
 class AuthManager {

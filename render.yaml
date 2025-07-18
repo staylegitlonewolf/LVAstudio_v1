@@ -5,8 +5,8 @@ services:
     repo: https://github.com/staylegitlonewolf/LVAstudio_v1
     plan: free
     region: oregon
-    buildCommand: cd lva-studio-backend && npm install && npm run build:render
-    startCommand: cd lva-studio-backend && npm run start
+    buildCommand: cd lva-studio-backend && chmod +x build.sh && ./build.sh
+    startCommand: cd lva-studio-backend && npm run start:production
     healthCheckPath: /api/members
     autoDeployTrigger: commit
     envVars:
@@ -36,6 +36,8 @@ services:
         value: true
       - key: NODE_OPTIONS
         value: --max-old-space-size=4096
+      - key: STRAPI_DISABLE_SWC
+        value: true
 
 databases:
   - name: lva-studio-db

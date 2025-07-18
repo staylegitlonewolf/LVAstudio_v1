@@ -304,7 +304,7 @@ class UserProfileModal {
 
   async createDefaultMemberProfile(userId, token, userData) {
     try {
-      const response = await fetch('http://localhost:1337/api/members', {
+      const response = await fetch('https://lvastudio-production.up.railway.app/api/members', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -337,7 +337,7 @@ class UserProfileModal {
 
   async fetchMemberData(userId, token) {
     try {
-      const response = await fetch(`http://localhost:1337/api/members?filters[user][id][$eq]=${userId}`, {
+      const response = await fetch(`https://lvastudio-production.up.railway.app/api/members?filters[user][id][$eq]=${userId}`, {
         headers: {
           'Authorization': `Bearer ${token}`
         }

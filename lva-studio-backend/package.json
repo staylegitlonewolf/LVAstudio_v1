@@ -5,12 +5,14 @@
   "description": "A Strapi application",
   "scripts": {
     "build": "strapi build",
-    "build:render": "STRAPI_DISABLE_SWC=true strapi build",
+    "build:render": "STRAPI_DISABLE_SWC=true NODE_OPTIONS='--max-old-space-size=4096' strapi build",
+    "build:production": "STRAPI_DISABLE_SWC=true NODE_OPTIONS='--max-old-space-size=4096' strapi build",
     "console": "strapi console",
     "deploy": "strapi deploy",
     "dev": "strapi develop",
     "develop": "strapi develop",
     "start": "strapi start",
+    "start:production": "NODE_ENV=production strapi start",
     "strapi": "strapi",
     "upgrade": "npx @strapi/upgrade latest",
     "upgrade:dry": "npx @strapi/upgrade latest --dry"
@@ -33,8 +35,8 @@
     "typescript": "^5"
   },
   "engines": {
-    "node": ">=18.0.0 <=22.x.x",
-    "npm": ">=6.0.0"
+    "node": "18.x",
+    "npm": ">=8.0.0"
   },
   "strapi": {
     "uuid": "fde386a2-27d2-41d8-bd58-ead83461400b",
