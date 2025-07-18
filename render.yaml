@@ -1,11 +1,14 @@
 services:
   - type: web
     name: lva-studio-backend
-    env: node
+    runtime: node
+    repo: https://github.com/staylegitlonewolf/LVAstudio_v1
     plan: free
+    region: oregon
     buildCommand: cd lva-studio-backend && chmod +x build.sh && ./build.sh
     startCommand: cd lva-studio-backend && npm run start
     healthCheckPath: /api/members
+    autoDeployTrigger: commit
     envVars:
       - key: NODE_ENV
         value: production
@@ -28,9 +31,7 @@ services:
       - key: JWT_SECRET
         value: Nntv3YuSlJD3MscDP60Y1s9ampqEPZVaVe3HYxRNVZY=
       - key: DATABASE_URL
-        fromDatabase:
-          name: lva-studio-db
-          property: connectionString
+        value: postgresql://postgres:rlDvLJoDRAEDOnBgKxsBanqBteYGjbkX@turntable.proxy.rlwy.net:47370/railway
       - key: STRAPI_TELEMETRY_DISABLED
         value: true
       - key: NODE_OPTIONS
@@ -40,4 +41,5 @@ databases:
   - name: lva-studio-db
     databaseName: lvastudio
     user: lvastudio
-    plan: free 
+    plan: free
+    region: oregon 
