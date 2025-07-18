@@ -4,7 +4,8 @@
   "private": true,
   "description": "A Strapi application",
   "scripts": {
-    "build": "strapi build",
+    "preinstall": "npm uninstall @swc/core @swc/cli @swc/helpers || true",
+    "build": "STRAPI_DISABLE_SWC=true NODE_OPTIONS='--max-old-space-size=4096' strapi build",
     "build:render": "STRAPI_DISABLE_SWC=true NODE_OPTIONS='--max-old-space-size=4096' strapi build",
     "build:production": "STRAPI_DISABLE_SWC=true NODE_OPTIONS='--max-old-space-size=4096' strapi build",
     "console": "strapi console",
