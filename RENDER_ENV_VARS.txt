@@ -1,0 +1,30 @@
+RENDER ENVIRONMENT VARIABLES
+============================
+
+Copy these exact values to your Render dashboard:
+
+NODE_ENV=production
+DATABASE_CLIENT=postgres
+DATABASE_URL=postgresql://postgres:rlDvLJoDRAEDOnBgKxsBanqBteYGjbkX@turntable.proxy.rlwy.net:47370/railway
+DATABASE_SSL=true
+HOST=0.0.0.0
+PORT=1337
+APP_KEYS=LL4zOY1gQMH2nv+VSVS97ShnDzrhy0bd5OhDN3szlUI=,D3aAI2pxo4fGVYWVtff3d+ENFgXHjrHR/SLDHd9UWHo=,DZHh2pXFMkAE4P6DHcQLgZsBiv2BpVYOAIZSP1xBc6k=,7pfZNkhB+XHbQz191XBB3j7bu7EWLhJ+D9v/OF25pVI=
+ADMIN_JWT_SECRET=RUFeC3SD/y0IE9xsjSbKEYa2bOTVFEO+HUzGt3AcR8k=
+API_TOKEN_SALT=iCEfa5ew1TLdpf1UNWBJtw==
+TRANSFER_TOKEN_SALT=TozGrf52H43NGh9AW1wIaQ==
+JWT_SECRET=Nntv3YuSlJD3MscDP60Y1s9ampqEPZVaVe3HYxRNVZY=
+
+DEPLOYMENT STEPS:
+================
+
+1. Go to render.com and sign up/login
+2. Click "New +" → "Blueprint"
+3. Connect your GitHub repository
+4. Render will detect render.yaml automatically
+5. Click "Apply" to deploy
+6. Add the environment variables above in the Render dashboard
+7. Wait for deployment to complete
+8. Access your Strapi admin at: your-app-url.onrender.com/admin
+
+Your Railway database is already ready and waiting! 🚀 

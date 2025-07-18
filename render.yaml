@@ -1,0 +1,39 @@
+services:
+  - type: web
+    name: lva-studio-backend
+    env: node
+    plan: free
+    buildCommand: cd lva-studio-backend && npm install && npm run build
+    startCommand: cd lva-studio-backend && npm run start
+    healthCheckPath: /api/members
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: DATABASE_CLIENT
+        value: postgres
+      - key: HOST
+        value: 0.0.0.0
+      - key: PORT
+        value: 1337
+      - key: DATABASE_SSL
+        value: true
+      - key: APP_KEYS
+        value: LL4zOY1gQMH2nv+VSVS97ShnDzrhy0bd5OhDN3szlUI=,D3aAI2pxo4fGVYWVtff3d+ENFgXHjrHR/SLDHd9UWHo=,DZHh2pXFMkAE4P6DHcQLgZsBiv2BpVYOAIZSP1xBc6k=,7pfZNkhB+XHbQz191XBB3j7bu7EWLhJ+D9v/OF25pVI=
+      - key: ADMIN_JWT_SECRET
+        value: RUFeC3SD/y0IE9xsjSbKEYa2bOTVFEO+HUzGt3AcR8k=
+      - key: API_TOKEN_SALT
+        value: iCEfa5ew1TLdpf1UNWBJtw==
+      - key: TRANSFER_TOKEN_SALT
+        value: TozGrf52H43NGh9AW1wIaQ==
+      - key: JWT_SECRET
+        value: Nntv3YuSlJD3MscDP60Y1s9ampqEPZVaVe3HYxRNVZY=
+      - key: DATABASE_URL
+        fromDatabase:
+          name: lva-studio-db
+          property: connectionString
+
+databases:
+  - name: lva-studio-db
+    databaseName: lvastudio
+    user: lvastudio
+    plan: free 
