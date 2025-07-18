@@ -35,6 +35,30 @@
         style="cursor:pointer;"
         onclick="enterPortal()"
       />
+      <!-- Auth Button -->
+      <div class="auth-menu">
+        <button id="login-btn" class="auth-btn-menu" onclick="goToLogin()" style="display: none;">
+          <i class="fas fa-sign-in-alt"></i>
+          Login
+        </button>
+        <div id="user-menu" class="user-menu" style="display: none;">
+          <button class="user-btn" onclick="toggleUserMenu()">
+            <i class="fas fa-user-circle"></i>
+            <span id="user-name">User</span>
+            <i class="fas fa-chevron-down"></i>
+          </button>
+          <div class="user-dropdown">
+            <a href="#" onclick="showProfile()">
+              <i class="fas fa-user"></i>
+              Profile
+            </a>
+            <a href="#" onclick="logout()">
+              <i class="fas fa-sign-out-alt"></i>
+              Logout
+            </a>
+          </div>
+        </div>
+      </div>
       <!-- Theme toggle button moved to side menu -->
     </div>
   </div>
@@ -87,6 +111,7 @@
   <script src="js/3d-model.js"></script>
   <script src="js/wix.js"></script>
   <script src="js/nilpartners.js"></script>
+  <script src="js/auth-integration.js"></script>
   <script type="module">
     import { toggleFontMode } from './js/theme.js';
     window.toggleFontMode = toggleFontMode;
@@ -102,6 +127,66 @@
       button.classList.remove('light-btn', 'epic-btn');
       button.classList.add('epic-btn');
     }
+  </script>
+  
+  <script src="js/auth.js"></script>
+  <script src="js/user-profile.js"></script>
+  
+  <script>
+    // Auth and user profile functions
+    function goToLogin() {
+      window.location.href = 'login.html';
+    }
+
+    function showProfile() {
+      userProfile.open();
+    }
+
+    function logout() {
+      userProfile.logout();
+    }
+
+    function toggleUserMenu() {
+      const dropdown = document.querySelector('.user-dropdown');
+      dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+    }
+
+    // Check auth status on page load
+    document.addEventListener('DOMContentLoaded', async function() {
+      const token = localStorage.getItem('auth_token');
+      const userData = JSON.parse(localStorage.getItem('user_data') || '{}');
+      
+      const loginBtn = document.getElementById('login-btn');
+      const userMenu = document.getElementById('user-menu');
+      const userName = document.getElementById('user-name');
+      
+      if (token && userData.id) {
+        // User is logged in
+        loginBtn.style.display = 'none';
+        userMenu.style.display = 'block';
+        userName.textContent = userData.username || userData.email || 'User';
+        
+        // Try to fetch member data if not available
+        const memberData = JSON.parse(localStorage.getItem('member_data') || '{}');
+        if (!memberData.id && window.authManager) {
+          await window.authManager.fetchMemberProfile(userData.id, token);
+        }
+      } else {
+        // User is not logged in
+        loginBtn.style.display = 'block';
+        userMenu.style.display = 'none';
+      }
+    });
+
+    // Close dropdown when clicking outside
+    document.addEventListener('click', function(event) {
+      const userMenu = document.querySelector('.user-menu');
+      const dropdown = document.querySelector('.user-dropdown');
+      
+      if (!userMenu.contains(event.target)) {
+        dropdown.style.display = 'none';
+      }
+    });
   </script>
 </body>
 </html>

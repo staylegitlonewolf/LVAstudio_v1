@@ -700,3 +700,121 @@ body.clean-mode .flip-back p {
 .toggle-mode-btn:hover i {
   color: #0099cc;
 }
+
+/* Authentication Menu Styles */
+.auth-menu {
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+  margin-right: 20px;
+}
+
+.auth-btn-menu {
+  background: linear-gradient(135deg, #00d4ff, #0099cc);
+  color: #ffffff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'Orbitron', monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.auth-btn-menu:hover {
+  background: linear-gradient(135deg, #0099cc, #0066ff);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(0, 212, 255, 0.3);
+}
+
+.user-menu {
+  position: relative;
+}
+
+.user-btn {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'Orbitron', monospace;
+}
+
+.user-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateY(-2px);
+}
+
+.user-dropdown {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background: rgba(0, 0, 0, 0.9);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+  padding: 10px 0;
+  min-width: 150px;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px);
+  transition: all 0.3s ease;
+  z-index: 1000;
+  margin-top: 10px;
+}
+
+.user-menu:hover .user-dropdown {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.user-dropdown a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #ffffff;
+  text-decoration: none;
+  padding: 10px 15px;
+  font-size: 0.9rem;
+  transition: background 0.3s ease;
+}
+
+.user-dropdown a:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.user-dropdown a i {
+  width: 16px;
+  text-align: center;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .auth-menu {
+    margin-right: 10px;
+  }
+  
+  .auth-btn-menu,
+  .user-btn {
+    padding: 6px 12px;
+    font-size: 0.8rem;
+  }
+  
+  .user-dropdown {
+    right: -10px;
+  }
+}

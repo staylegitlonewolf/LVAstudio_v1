@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - LVA Studio</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/light.css">
+    <link rel="stylesheet" href="css/cards.css">
+    <link rel="stylesheet" href="css/buttons.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .admin-container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 2rem;
+        }
+        
+        .admin-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid #00bfff;
+        }
+        
+        .admin-title {
+            color: #00bfff;
+            font-size: 2.5rem;
+            text-shadow: 0 0 10px #00e5ff;
+        }
+        
+        .back-btn {
+            background: linear-gradient(135deg, #00bfff, #0080ff);
+            color: white;
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .members-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .member-card {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid #00bfff;
+            border-radius: 10px;
+            padding: 1.5rem;
+            backdrop-filter: blur(10px);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .member-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 191, 255, 0.3);
+        }
+        
+        .member-info h3 {
+            color: #00bfff;
+            margin-bottom: 0.5rem;
+        }
+        
+        .member-info p {
+            color: #aadfff;
+            margin: 0.3rem 0;
+        }
+        
+        .role-ribbon {
+            display: inline-block;
+            background: linear-gradient(135deg, #00bfff, #0080ff);
+            color: white;
+            padding: 0.2rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            margin-top: 0.5rem;
+        }
+        
+        .admin-actions {
+            margin-top: 1rem;
+            display: flex;
+            gap: 0.5rem;
+        }
+        
+        .admin-btn {
+            padding: 0.3rem 0.8rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            transition: background 0.3s ease;
+        }
+        
+        .edit-btn {
+            background: #28a745;
+            color: white;
+        }
+        
+        .delete-btn {
+            background: #dc3545;
+            color: white;
+        }
+        
+        .loading {
+            text-align: center;
+            color: #00bfff;
+            padding: 2rem;
+        }
+        
+        .error {
+            text-align: center;
+            color: #ff4444;
+            padding: 2rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="admin-container">
+        <div class="admin-header">
+            <h1 class="admin-title"><i class="fas fa-users-cog"></i> Admin Dashboard</h1>
+            <a href="index.html" class="back-btn">
+                <i class="fas fa-arrow-left"></i> Back to Site
+            </a>
+        </div>
+        
+        <div id="admin-content">
+            <div class="loading">
+                <i class="fas fa-spinner fa-spin"></i> Loading members...
+            </div>
+        </div>
+    </div>
+
+    <script src="js/auth.js"></script>
+    <script>
+        // Admin Dashboard Logic
+        class AdminDashboard {
+            constructor() {
+                this.members = [];
+                this.init();
+            }
+
+            async init() {
+                // Check if user is admin
+                if (!this.checkAdminAccess()) {
+                    window.location.href = 'index.html';
+                    return;
+                }
+                
+                await this.loadMembers();
+                this.renderMembers();
+            }
+
+            checkAdminAccess() {
+                const userData = JSON.parse(localStorage.getItem('user_data') || '{}');
+                const memberData = JSON.parse(localStorage.getItem('member_data') || '{}');
+                
+                // Check if user has admin privileges
+                const isAdmin = memberData.ribbon_role === 'Super Admin' || 
+                               memberData.ribbon_role === 'Admin' || 
+                               memberData.ribbon_role === 'Moderator' ||
+                               userData.role?.name === 'Admin';
+                
+                if (!isAdmin) {
+                    console.log('Access denied: User is not an admin');
+                    console.log('User role:', memberData.ribbon_role);
+                    console.log('User data:', userData);
+                }
+                
+                return isAdmin;
+            }
+
+            async loadMembers() {
+                try {
+                    const token = localStorage.getItem('auth_token');
+                    if (!token) {
+                        console.log('No auth token found, redirecting to login');
+                        window.location.href = 'login.html';
+                        return;
+                    }
+
+                    console.log('Loading members...');
+                    const response = await fetch('http://localhost:1337/api/members?populate=user', {
+                        headers: {
+                            'Authorization': `Bearer ${token}`
+                        }
+                    });
+
+                    if (response.ok) {
+                        const result = await response.json();
+                        this.members = result.data || [];
+                        console.log(`Loaded ${this.members.length} members`);
+                    } else {
+                        console.error('Failed to load members:', response.status, response.statusText);
+                        throw new Error(`Failed to load members: ${response.status}`);
+                    }
+                } catch (error) {
+                    console.error('Error loading members:', error);
+                    document.getElementById('admin-content').innerHTML = `
+                        <div class="error">
+                            <i class="fas fa-exclamation-triangle"></i>
+                            <p>Error loading members: ${error.message}</p>
+                            <p>Please check your connection and try again.</p>
+                            <button onclick="location.reload()" class="back-btn">
+                                <i class="fas fa-refresh"></i> Retry
+                            </button>
+                        </div>
+                    `;
+                }
+            }
+
+            renderMembers() {
+                const content = document.getElementById('admin-content');
+                
+                if (this.members.length === 0) {
+                    content.innerHTML = `
+                        <div style="text-align: center; color: #aadfff; padding: 2rem;">
+                            <i class="fas fa-users"></i>
+                            <p>No members found.</p>
+                        </div>
+                    `;
+                    return;
+                }
+
+                const membersHTML = this.members.map(member => `
+                    <div class="member-card">
+                        <div class="member-info">
+                            <h3><i class="fas fa-user"></i> ${member.name || 'Unknown'}</h3>
+                            <p><strong>Email:</strong> ${member.user?.email || 'N/A'}</p>
+                            <p><strong>Username:</strong> ${member.user?.username || 'N/A'}</p>
+                            <p><strong>Bio:</strong> ${member.bio || 'No bio provided'}</p>
+                            <span class="role-ribbon">${member.ribbon_role || 'Member'}</span>
+                        </div>
+                        <div class="admin-actions">
+                            <button class="admin-btn edit-btn" onclick="adminDashboard.editMember('${member.id}')">
+                                <i class="fas fa-edit"></i> Edit
+                            </button>
+                            <button class="admin-btn delete-btn" onclick="adminDashboard.deleteMember('${member.id}')">
+                                <i class="fas fa-trash"></i> Delete
+                            </button>
+                        </div>
+                    </div>
+                `).join('');
+
+                content.innerHTML = `
+                    <div class="members-grid">
+                        ${membersHTML}
+                    </div>
+                `;
+            }
+
+            async editMember(memberId) {
+                // Simple edit functionality - could be expanded
+                const newBio = prompt('Enter new bio:');
+                if (newBio !== null) {
+                    try {
+                        const token = localStorage.getItem('auth_token');
+                        const response = await fetch(`http://localhost:1337/api/members/${memberId}`, {
+                            method: 'PUT',
+                            headers: {
+                                'Content-Type': 'application/json',
+                                'Authorization': `Bearer ${token}`
+                            },
+                            body: JSON.stringify({
+                                data: { bio: newBio }
+                            })
+                        });
+
+                        if (response.ok) {
+                            await this.loadMembers();
+                            this.renderMembers();
+                            alert('Member updated successfully!');
+                        } else {
+                            alert('Failed to update member');
+                        }
+                    } catch (error) {
+                        console.error('Edit error:', error);
+                        alert('Error updating member');
+                    }
+                }
+            }
+
+            async deleteMember(memberId) {
+                if (confirm('Are you sure you want to delete this member?')) {
+                    try {
+                        const token = localStorage.getItem('auth_token');
+                        const response = await fetch(`http://localhost:1337/api/members/${memberId}`, {
+                            method: 'DELETE',
+                            headers: {
+                                'Authorization': `Bearer ${token}`
+                            }
+                        });
+
+                        if (response.ok) {
+                            await this.loadMembers();
+                            this.renderMembers();
+                            alert('Member deleted successfully!');
+                        } else {
+                            alert('Failed to delete member');
+                        }
+                    } catch (error) {
+                        console.error('Delete error:', error);
+                        alert('Error deleting member');
+                    }
+                }
+            }
+        }
+
+        // Initialize admin dashboard
+        const adminDashboard = new AdminDashboard();
+        window.adminDashboard = adminDashboard;
+    </script>
+</body>
+</html> 

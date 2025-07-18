@@ -1,0 +1,19 @@
+{
+  "collectionName": "admins",
+  "info": {
+    "singularName": "admin",
+    "pluralName": "admins",
+    "displayName": "Admin",
+    "description": "Admin management for members"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "name": { "type": "string", "required": true },
+    "admin_role": { "type": "enumeration", "enum": ["Super Admin", "Moderator", "Manager"], "default": "Manager" },
+    "can_delete_members": { "type": "boolean", "default": false },
+    "can_change_roles": { "type": "boolean", "default": false },
+    "user": { "type": "relation", "relation": "oneToOne", "target": "plugin::users-permissions.user" }
+  }
+} 

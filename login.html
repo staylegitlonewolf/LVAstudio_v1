@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+  <title>LVA.studio™ - Login</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Open+Sans:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/epic.css" />
+  <link rel="stylesheet" href="css/auth.css" />
+
+</head>
+<body class="epic-mode">
+  <video id="epic-bg-video" class="epic-bg-video" autoplay loop muted playsinline>
+    <source src="media/background.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+
+  <!-- Auth Container -->
+  <div class="auth-container">
+    <div class="auth-card">
+      <!-- Logo and Brand -->
+      <div class="auth-header">
+        <img
+          src="https://static.wixstatic.com/media/b2f74b_35458543ca6540f4bad3ad4cb452ffac~mv2.png/v1/fill/w_209,h_209,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/lva%20baby%20blue%203d%20no%20backgroud.png"
+          alt="LVA Logo"
+          class="auth-logo"
+        />
+        <h1 class="auth-title">LVA.studio™</h1>
+        <p class="auth-subtitle">Living Victorious Always™</p>
+      </div>
+
+      <!-- Login Form -->
+      <div id="login-form" class="auth-form">
+        <h2>Welcome Back</h2>
+        <p class="auth-description">Sign in to access your portal</p>
+        
+        <!-- Welcome Message -->
+        <div class="welcome-message">
+          <p>Sign in to access your LVA Studio portal</p>
+        </div>
+
+        <!-- Email/Password Form -->
+        <form id="email-login-form" class="email-form">
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required>
+          </div>
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" required>
+          </div>
+          <button type="submit" class="auth-btn primary">Sign In</button>
+        </form>
+
+        <!-- Links -->
+        <div class="auth-links">
+          <a href="#" id="forgot-password-link">Forgot Password?</a>
+          <a href="#" id="signup-link">Don't have an account? Sign Up</a>
+        </div>
+      </div>
+
+      <!-- Signup Form -->
+      <div id="signup-form" class="auth-form" style="display: none;">
+        <h2>Create Account</h2>
+        <p class="auth-description">Join LVA.studio™ today</p>
+        
+        <!-- Welcome Message -->
+        <div class="welcome-message">
+          <p>Create your LVA Studio account</p>
+        </div>
+
+        <!-- Email/Password Signup Form -->
+        <form id="email-signup-form" class="email-form">
+          <div class="form-group">
+            <label for="signup-name">Full Name</label>
+            <input type="text" id="signup-name" name="name" required>
+          </div>
+          <div class="form-group">
+            <label for="signup-email">Email</label>
+            <input type="email" id="signup-email" name="email" required>
+          </div>
+          <div class="form-group">
+            <label for="signup-password">Password</label>
+            <input type="password" id="signup-password" name="password" required>
+          </div>
+          <div class="form-group">
+            <label for="signup-confirm-password">Confirm Password</label>
+            <input type="password" id="signup-confirm-password" name="confirmPassword" required>
+          </div>
+          <button type="submit" class="auth-btn primary">Create Account</button>
+        </form>
+
+        <!-- Links -->
+        <div class="auth-links">
+          <a href="#" id="login-link">Already have an account? Sign In</a>
+        </div>
+      </div>
+
+      <!-- Forgot Password Form -->
+      <div id="forgot-password-form" class="auth-form" style="display: none;">
+        <h2>Reset Password</h2>
+        <p class="auth-description">Enter your email to receive a reset link</p>
+        
+        <form id="reset-password-form" class="email-form">
+          <div class="form-group">
+            <label for="reset-email">Email</label>
+            <input type="email" id="reset-email" name="email" required>
+          </div>
+          <button type="submit" class="auth-btn primary">Send Reset Link</button>
+        </form>
+
+        <!-- Links -->
+        <div class="auth-links">
+          <a href="#" id="back-to-login-link">Back to Sign In</a>
+        </div>
+      </div>
+
+      <!-- Loading State -->
+      <div id="auth-loading" class="auth-loading" style="display: none;">
+        <div class="spinner"></div>
+        <p>Authenticating...</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Back to Main Site -->
+  <div class="back-to-site">
+    <a href="index.html" class="back-link">
+      <i class="fas fa-arrow-left"></i>
+      Back to LVA.studio™
+    </a>
+  </div>
+
+  <script src="js/auth.js"></script>
+</body>
+</html> 

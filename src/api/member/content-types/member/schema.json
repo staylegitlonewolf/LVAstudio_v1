@@ -1,0 +1,19 @@
+{
+  "collectionName": "members",
+  "info": {
+    "singularName": "member",
+    "pluralName": "members",
+    "displayName": "Member",
+    "description": "Extended profile for each user"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "name": { "type": "string", "required": true },
+    "bio": { "type": "text" },
+    "profile_picture": { "type": "media", "multiple": false, "required": false },
+    "ribbon_role": { "type": "enumeration", "enum": ["Member"], "default": "Member" },
+    "user": { "type": "relation", "relation": "oneToOne", "target": "plugin::users-permissions.user", "inversedBy": "member" }
+  }
+} 
