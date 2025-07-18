@@ -43,5 +43,12 @@
   "strapi": {
     "uuid": "fde386a2-27d2-41d8-bd58-ead83461400b",
     "installId": "e8957653b97ae05d402084f03a730bb8a33abed6da896bbd77ace995502e0d91"
+  },
+  "overrides": {
+    "esbuild": {
+      "optionalDependencies": {
+        "@esbuild/linux-x64": "0.20.1"
+      }
+    }
   }
 }

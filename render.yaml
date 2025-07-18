@@ -5,7 +5,7 @@ services:
     repo: https://github.com/staylegitlonewolf/LVAstudio_v1
     plan: free
     region: oregon
-    buildCommand: cd lva-studio-backend && chmod +x build-render.sh && ./build-render.sh
+    buildCommand: cd lva-studio-backend && chmod +x build-esbuild-fix.sh && ./build-esbuild-fix.sh
     startCommand: cd lva-studio-backend && chmod +x start-production.sh && ./start-production.sh
     healthCheckPath: /api/members
     healthCheckTimeout: 300

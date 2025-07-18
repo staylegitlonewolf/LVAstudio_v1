@@ -3,9 +3,10 @@
 # Exit on any error
 set -e
 
-echo "=== LVA Studio Backend Build Script for Render ==="
+echo "=== LVA Studio Backend Build Script - Esbuild Fix ==="
 echo "Node.js version: $(node --version)"
 echo "NPM version: $(npm --version)"
+echo "Platform: $(uname -s)-$(uname -m)"
 
 # Set critical environment variables
 export NODE_ENV=production
@@ -18,29 +19,37 @@ echo "1. Cleaning up any existing SWC packages..."
 npm uninstall @swc/core @swc/cli @swc/helpers @swc/register || true
 rm -rf node_modules/@swc || true
 
-echo "2. Installing dependencies with proper esbuild support..."
-# Install without --only=production to include dev dependencies needed for build
-npm ci --ignore-scripts
+echo "2. Installing all dependencies (including dev dependencies for build)..."
+npm ci
 
 echo "3. Force removing any SWC packages that might have been installed..."
 npm uninstall @swc/core @swc/cli @swc/helpers @swc/register || true
 rm -rf node_modules/@swc || true
 
 echo "4. Ensuring esbuild has proper platform binaries..."
+# Check if we're on Linux x64
+if [[ "$(uname -s)" == "Linux" && "$(uname -m)" == "x86_64" ]]; then
+    echo "Detected Linux x64 platform, ensuring esbuild binary..."
+    npm install @esbuild/linux-x64 --no-save || true
+fi
+
 # Force reinstall esbuild to get platform-specific binaries
 npm install esbuild --no-save
 
-echo "5. Setting up environment for build..."
+echo "5. Verifying esbuild installation..."
+npx esbuild --version
+
+echo "6. Setting up environment for build..."
 export STRAPI_DISABLE_SWC=true
 export NODE_OPTIONS="--max-old-space-size=4096"
 
-echo "6. Verifying Strapi installation..."
+echo "7. Verifying Strapi installation..."
 npx strapi --version
 
-echo "7. Building Strapi application..."
+echo "8. Building Strapi application..."
 npm run build:render
 
-echo "8. Verifying build output..."
+echo "9. Verifying build output..."
 if [ -d "build" ]; then
     echo "✅ Build directory created successfully"
     echo "Build contents:"
