@@ -6,8 +6,10 @@ services:
     plan: free
     region: oregon
     buildCommand: cd lva-studio-backend && chmod +x build-render.sh && ./build-render.sh
-    startCommand: cd lva-studio-backend && npm run start:production
+    startCommand: cd lva-studio-backend && chmod +x start-production.sh && ./start-production.sh
     healthCheckPath: /api/members
+    healthCheckTimeout: 300
+    maxShutdownDelaySeconds: 60
     autoDeployTrigger: commit
     envVars:
       - key: NODE_ENV
