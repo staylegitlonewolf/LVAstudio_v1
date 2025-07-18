@@ -5,7 +5,7 @@ services:
     repo: https://github.com/staylegitlonewolf/LVAstudio_v1
     plan: free
     region: oregon
-    buildCommand: cd lva-studio-backend && chmod +x build.sh && ./build.sh
+    buildCommand: cd lva-studio-backend && npm install && npm run build:render
     startCommand: cd lva-studio-backend && npm run start
     healthCheckPath: /api/members
     autoDeployTrigger: commit
