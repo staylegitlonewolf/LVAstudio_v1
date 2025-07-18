@@ -3,7 +3,7 @@ services:
     name: lva-studio-backend
     env: node
     plan: free
-    buildCommand: cd lva-studio-backend && npm install && npm run build
+    buildCommand: cd lva-studio-backend && chmod +x build.sh && ./build.sh
     startCommand: cd lva-studio-backend && npm run start
     healthCheckPath: /api/members
     envVars:
@@ -31,6 +31,10 @@ services:
         fromDatabase:
           name: lva-studio-db
           property: connectionString
+      - key: STRAPI_TELEMETRY_DISABLED
+        value: true
+      - key: NODE_OPTIONS
+        value: --max-old-space-size=4096
 
 databases:
   - name: lva-studio-db
